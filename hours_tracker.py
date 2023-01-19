@@ -57,7 +57,9 @@ def print_list_info():
     total_length = timedelta(0, 0)
     for session in sessions_list:
         total_length += session.length()
-    print(f"\nCurrent total guided learning hours: {total_length.__str__()}")
+    length_minutes = int((total_length.total_seconds() % 3600) / 60)
+    length_hours = int((total_length.total_seconds() - (length_minutes * 60)) / 3600)
+    print(f"\nCurrent total guided learning hours: {length_hours} hours, {length_minutes} minutes")
 
 def overwrite_file():
     '''Writes all sessions in the current working list over the current contents of sessions.txt'''
